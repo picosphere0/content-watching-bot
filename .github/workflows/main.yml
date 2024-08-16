@@ -1,0 +1,26 @@
+name: Didimoon Watching Bot
+
+on:
+  schedule:
+    # Schedule the workflow to run every day at midnight (adjust as needed)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  watch-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Playwright script
+        run: node watch.js
